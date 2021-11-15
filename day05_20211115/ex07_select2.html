@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+    function emailSelect() {
+            const domainSelect = document.getElementById('domainSelect').value;
+
+            const domain = document.getElementById('domain'); // 태그를 가져온다.
+            // select 에서 선택한 값을 domain id를 적용한 input 태그에 출력
+            // domain.value 에다가 domainSelect 를 대입한다.
+            domain.value = domainSelect;
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    이메일 : <input type="text" name="emailId"> @ <input type="text" id="domain" name="domain">
+
+    <select id = "domainSelect" onchange="emailSelect()">
+    <option selected>직접입력</option>
+    <option value="naver.com"> naver.com </option>
+    <option value="hanmail.net"> hanmail.net</option>
+    <option value="hotmail.com">hotmail.com</option>
+    <option value="gmail.com">gmail.com</option>
+
+    </select> <br> <br>
+
+</body>
+</html>
