@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* input 태그에 대한 스타일 지정 */
+        input {
+            /* input태그 : 인라인요소 = 필요한만큼 가로너비를 차지 / 크기지정 X */
+            /* input태그 : 블록요소 = 한줄 차지 / 크기지정 O */
+            display: block;
+            color:black;
+            width: 300px;
+            height : 20px;
+            /* background-color: goldenrod; */
+        }
+    </style>
+
+    <script>
+        function idCheck(){
+            // 영문소문자, 숫자, 6~10자리 정규식 
+            // 소문자 숫자가 반드시 1개 이상 사용되어야 함. 
+            const exp = /^(?=.*[a-z])(?=.*\d)[a-z\d]{6,10}$/;
+            
+            // 영문대소문자, 숫자, 6~10자리 정규식 
+            // 소문자, 대문자, 숫자가 반드시 1개이상 사용되어야 함. 
+            const exp1 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,10}$/;
+            
+            // 네이버 아이디 정규식 
+            // 영문소문자, 숫자, -_ 특수문자, 5~20자리
+            // 소문자, 숫자, 특수문자(-_)가 반드시 1개 이상 사용되어야 함. 
+            const exp2 = /^(?=.*[a-z])(?=.*\d)(?=.*[-_])[a-z\d-_]{5,20}$/; 
+
+            const id = document.getElementById('id').value;
+            const idResult = document.getElementById('idResult');
+
+            if (id.match(exp)) {
+                console.log('유요한 형식')
+                idResult.innerHTML = '좋습니다';
+                idResult.style.color = 'black';
+            } else {
+                console.log('유효하지않은형식.')
+                idResult.innerHTML = '다시입력하세요';
+                idResult.style.color = 'red';
+            }
+        }
+        function password(){
+            const exp2 = /^(?=.*[a-z])(?=.*\d)(?=.*[-_!@#$%^&*()])[a-z\d-_!@#$%^&*()]{8,20}$/;
+            const passwordValue = document.getElementById('pw').value;
+            console.log('pw값 : ',passwordValue)
+            const passwordResult = document.getElementById('passwordResult');
+            console.log(passwordResult)
+            const passwordRegular = document.getElementById('passwordRegular')
+            // const result1 = document.getElementById('result1');
+            // console.log(result1)
+
+
+            console.log('입력password: ', passwordValue);
+            console.log(passwordValue.length);
+            
+            const passwordLength = passwordValue.length
+
+            if (passwordValue.match(exp2)) { // pw 입력값이 정규식을 만족하면
+                passwordResult.innerHTML = '좋습니다';
+                passwordResult.style.color = 'skyblue';
+            }else if(passwordLength == 0 ) {
+                passwordResult.innerHTML = '필수항목입니다'; 
+                passwordResult.style.color = 'red';
+            } else {
+                passwordResult.innerHTML = '영문, 숫자, 특수문자를 사용하여 8~20자 이내로 작성해 주세요';
+                passwordResult.style.color = 'red';
+            }
+
+            // if(passwordRegular.match(exp2)){
+            // passwordRegular.innerHTML = '좋습니다!';
+            // passwordRegular.style.color = 'blue';
+            // } else {
+            // passwordRegular.innerHTML = '영문, 숫자, 특수문자를 사용하여 8~20자 이내로 작성해 주세요';
+            // passwordRegular.style.color = 'red';
+            }
+            
+
+        function passwordCheck() {
+            const passwordValue = document.getElementById('pw').value;
+            const passwordValue2 = document.getElementById('pwCheck').value;
+            const passwordCheckResult = document.getElementById('passwordCheckResult');
+            
+             if(passwordValue == passwordValue2 ) {
+                passwordCheckResult.innerHTML = '일치합니다요'
+                passwordCheckResult.style.color = 'lightgreen';
+             } else { 
+                passwordCheckResult.innerHTML = '일치하지않습니다'
+                passwordCheckResult.style.color = 'red';
+         }
+        }
+    </script>
+</head>
+<body>
+    아이디 : <input type='text' id="id" onblur="idCheck()" placeholder="영문소문자, 숫자 조합하여 6~20자이내" maxlength="20">
+    <span id="idResult" style="color:gray;">
+        
+    </span>
+    
+    <br>
+    비밀번호 : <input type="text" id="pw" placeholder="8~20자리" onblur="password()" maxlength="20">
+    <span id="passwordResult" style="color: gray;"> 
+        <!-- <p id="result1"> 비밀번호검증결과  </p> -->
+    </span>
+    <br>
+    비밀번호확인 : <input type="text" id="pwCheck" placeholder="비밀번호 한번더 입력해주세요" 
+    onblur="passwordCheck()" onkeyup="passwordCheck()" maxlength="20">
+    <span id="passwordCheckResult" style="color: gray;">
+        <!-- <p id="result2"> 비밀번호확인결과 </p> -->
+    
+    </span>
+</body>
+</html>

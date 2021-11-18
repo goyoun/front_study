@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 자식 요소에 대한 위치를 지정할 때는 부모요소에
+            position : relative를 반드시 지정해야
+            부모요소 안에서 위치를 잡을수 있음. */
+        .wrap {
+            width: 500px;
+            height: 500px;
+            background-color: wheat;
+            position: relative;
+        }
+        .container {
+            width: 300px;
+            background-color: #ffcfcf;
+            /* position: relative; */
+        }
+        .container .item{
+            border: 4px dashed black;
+            background-color: rgb(181, 190, 240);
+        }
+        /* 첫번째 자식요소가 100px 100px 사이즈로 맞춰짐 */
+        .container .item:nth-child(1) {
+            width:100px;
+            height:100px;
+        }
+        /* 두번쨰 포지션은 배치에 관한 태그 */
+        .container .item:nth-child(2){
+            width:140px;
+            height:70px;
+            position: absolute;
+            right: 10px;
+            bottom:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="container">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+         </div>
+    </div>
+</body>
+</html>

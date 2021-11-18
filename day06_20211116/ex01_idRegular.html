@@ -16,11 +16,34 @@
     </style>
 
     <script>
+        function idCheck(){
+            // 영문소문자, 숫자, 6~10자리 정규식 
+            // 소문자 숫자가 반드시 1개 이상 사용되어야 함. 
+            const exp = /^(?=.*[a-z])(?=.*\d)[a-z\d]{6,10}$/;
+            
+            // 영문대소문자, 숫자, 6~10자리 정규식 
+            // 소문자, 대문자, 숫자가 반드시 1개이상 사용되어야 함. 
+            const exp1 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,10}$/;
+            
+            // 네이버 아이디 정규식 
+            // 영문소문자, 숫자, -_ 특수문자, 5~20자리
+            // 소문자, 숫자, 특수문자(-_)가 반드시 1개 이상 사용되어야 함. 
+            const exp2 = /^(?=.*[a-z])(?=.*\d)(?=.*[-_])[a-z\d-_]{5,20}$/; 
+
+            const id = document.getElementById('id').value;
+            if (id.match(exp)) {
+                console.log('유요한 형식')
+            } else {
+                console.log('유효하지않은형식.')
+            }
+        }
         function password(){
+            const exp2 = /^(?=.*[a-z])(?=.*\d)(?=.*[-_!@#$%^&*()])[a-z\d-_!@#$%^&*()]{8,20}$/;
             const passwordValue = document.getElementById('pw').value;
             console.log('pw값 : ',passwordValue)
             const passwordResult = document.getElementById('passwordResult');
             console.log(passwordResult)
+            const passwordRegular = document.getElementById('passwordRegular')
             // const result1 = document.getElementById('result1');
             // console.log(result1)
 
@@ -30,17 +53,25 @@
             
             const passwordLength = passwordValue.length
 
-            if(passwordLength == 0 ) {
+            if (passwordValue.match(exp2)) {
+                passwordResult.innerHTML = '좋습니다';
+                passwordResult.style.color = 'yellow';
+            }else if(passwordLength == 0 ) {
                 passwordResult.innerHTML = '필수항목입니다'; 
                 passwordResult.style.color = 'red';
-            } else if (passwordLength < 8 || passwordLength > 20){
-                passwordResult.innerHTML = '8~20자 이내로 작성해 주세요';
-                passwordResult.style.color = 'red';
             } else {
-                passwordResult.innerHTML = '좋습니다!';
-                passwordResult.style.color = 'lightgreen';
+                passwordResult.innerHTML = '영문, 숫자, 특수문자를 사용하여 8~20자 이내로 작성해 주세요';
+                passwordResult.style.color = 'red';
             }
-        }    
+
+            // if(passwordRegular.match(exp2)){
+            // passwordRegular.innerHTML = '좋습니다!';
+            // passwordRegular.style.color = 'blue';
+            // } else {
+            // passwordRegular.innerHTML = '영문, 숫자, 특수문자를 사용하여 8~20자 이내로 작성해 주세요';
+            // passwordRegular.style.color = 'red';
+            }
+            
 
         function passwordCheck() {
             const passwordValue = document.getElementById('pw').value;
@@ -58,18 +89,20 @@
     </script>
 </head>
 <body>
+    아이디 : <input type='text' id="id" onblur="idCheck()" placeholder="영문소문자, 숫자 조합하여 6~10글자이내">
+    <!-- 정규식 (regular expression) -->
 
     비밀번호 : <input type="text" id="pw" placeholder="8~20자리" onblur="password()" maxlength="20">
     <span id="passwordResult" style="color: gray;"> 
         <!-- <p id="result1"> 비밀번호검증결과  </p> -->
-        비밀번호 검증 결과
     </span>
+
     <br>
     비밀번호확인 : <input type="text" id="pwCheck" placeholder="비밀번호 한번더 입력해주세요" 
     onblur="passwordCheck()" onkeyup="passwordCheck()" maxlength="20">
     <span id="passwordCheckResult" style="color: gray;">
         <!-- <p id="result2"> 비밀번호확인결과 </p> -->
-        비밀반호 확인 결과
+    
     </span>
 </body>
 </html>

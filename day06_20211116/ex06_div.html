@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 10px;
+        }
+        .parent {
+            width: 300px;
+            height: 200px;
+            background-color: royalblue;
+            font-size: 20px;
+        }
+        .child {
+            /* 부모-자식 : 자식 태그의 너비는 따로 지정하지 않으면 부모랑 같게 출력 */
+             /*  10em = 200px */
+            /* width: 10em; */
+            /* 10rem - 160px */
+            width: 10rem;
+            height: 100px;
+            background-color: plum;
+        }
+    </style>
+</head>
+<body>
+    <!-- div 안에 div가 속해있으면 부모 자식태그 이다 -->
+    <!-- 부모의 너비만큼 나옴 -->
+    <div class="parent"> 
+        <div class="child">
+
+        </div>
+    </div>
+</body>
+</html>
